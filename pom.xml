@@ -5,35 +5,42 @@
 	<groupId>de.moduliertersingvogel</groupId>
 	<artifactId>mqttcache</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<properties>
-		<version.thorntail>2.6.0.Final</version.thorntail>
-		<maven.compiler.source>1.9</maven.compiler.source>
-		<maven.compiler.target>1.9</maven.compiler.target>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<meecrowave.version>1.2.8</meecrowave.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.thorntail</groupId>
-				<artifactId>bom</artifactId>
-				<version>${version.thorntail}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>jaxrs</artifactId>
+			<groupId>org.apache.meecrowave</groupId>
+			<artifactId>meecrowave-specs-api</artifactId>
+			<version>${meecrowave.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>cdi</artifactId>
+			<groupId>org.apache.meecrowave</groupId>
+			<artifactId>meecrowave-core</artifactId>
+			<version>${meecrowave.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.meecrowave</groupId>
+			<artifactId>meecrowave-junit</artifactId>
+			<version>${meecrowave.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.paho</groupId>
@@ -50,22 +57,34 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.13.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.13.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>mqttcache</finalName>
 		<plugins>
 			<plugin>
-				<groupId>io.thorntail</groupId>
-				<artifactId>thorntail-maven-plugin</artifactId>
-				<version>${version.thorntail}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>package</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<excludes>
+						<exclude>src/main/resources/conf/</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.meecrowave</groupId>
+				<artifactId>meecrowave-maven-plugin</artifactId>
+				<version>${meecrowave.version}</version>
+				<configuration>
+					<conf>conf</conf>
+					<loggingGlobalSetup>true</loggingGlobalSetup>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

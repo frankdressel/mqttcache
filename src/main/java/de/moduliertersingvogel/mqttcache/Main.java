@@ -1,8 +1,16 @@
 package de.moduliertersingvogel.mqttcache;
 
-import javax.ws.rs.core.Application;
-import javax.ws.rs.ApplicationPath;
+import java.util.Scanner;
 
-@ApplicationPath("/mqttcache")
+import javax.ws.rs.core.Application;
+
+import org.apache.meecrowave.Meecrowave;
+
 public class Main extends Application {
+	public static void main(String[] args) {
+		try (final Meecrowave meecrowave = new Meecrowave();final Scanner scanner=new Scanner(System.in);) {
+			meecrowave.bake();
+		    scanner.nextLine();
+		}
+	}
 }

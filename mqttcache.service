@@ -1,0 +1,12 @@
+[Unit]
+Description=Simple mqtt cache served over web server
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/mqttcache/mqttcache-distribution
+User=mqttcache
+ExecStart=/srv/mqttcache/mqttcache-distribution/bin/meecrowave.sh run
+ExecStop=/srv/mqttcache/mqttcache-distribution/bin/meecrowave.sh stop
+
+[Install]
+WantedBy=multi-user.target

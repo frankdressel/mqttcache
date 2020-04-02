@@ -1,6 +1,7 @@
 /target/
 /logs/
-/mqttcache.properties
+/conf/mqttcache.properties
 /.classpath
 /.project
 /.settings/
+/playbook.yml
