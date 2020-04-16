@@ -1,6 +1,6 @@
 /target/
 /logs/
-/conf/mqttcache.properties
+/conf/*
 /.classpath
 /.project
 /.settings/
