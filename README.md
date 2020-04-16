@@ -1,5 +1,7 @@
 # mqttcache
 
+A micro service which connects to a mqtt broker and caches the latest messages on a given topic. The message and the corresponding timestamp is delivered via rest api.
+
 ## Building
 
 ```
